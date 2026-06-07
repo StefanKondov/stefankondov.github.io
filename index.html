@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stefan Kondov — Portfolio</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --warm-cream:#FAF7F2;--warm-sand:#EDE8DF;--warm-brown:#8B6E52;
+      --warm-dark:#3D2E22;--warm-accent:#C4885A;--warm-mid:#A0856A;--warm-light:#F3EDE3;
+    }
+    body{font-family:'DM Sans',sans-serif;background:var(--warm-cream);color:var(--warm-dark);line-height:1.7;font-size:16px;}
+    .page{display:none;} .page.active{display:block;}
+    nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--warm-sand);padding:0 2rem;display:flex;justify-content:space-between;align-items:center;height:56px;}
+    .nav-name{font-family:'Lora',serif;font-size:1.1rem;color:var(--warm-dark);cursor:pointer;}
+    .nav-links{display:flex;gap:1.5rem;}
+    .nav-links a{font-size:0.85rem;letter-spacing:0.04em;text-transform:uppercase;color:var(--warm-mid);text-decoration:none;transition:color 0.2s;cursor:pointer;}
+    .nav-links a:hover{color:var(--warm-accent);}
+    .nav-links a.active{color:var(--warm-accent);border-bottom:2px solid var(--warm-accent);padding-bottom:2px;}
+    section{padding:4rem 2rem;max-width:780px;margin:0 auto;}
+    #hero{padding-top:5rem;padding-bottom:3rem;display:flex;gap:3rem;align-items:flex-start;}
+    .hero-text{flex:1;}
+    .hero-eyebrow{font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--warm-accent);margin-bottom:0.75rem;}
+    .hero-name{font-family:'Lora',serif;font-size:3.2rem;font-weight:400;line-height:1.1;color:var(--warm-dark);margin-bottom:1rem;}
+    .hero-role{font-size:1.05rem;color:var(--warm-mid);margin-bottom:1.5rem;font-weight:300;}
+    .hero-bio{font-size:0.95rem;color:var(--warm-dark);opacity:0.8;max-width:480px;line-height:1.8;}
+    .hero-contacts{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.75rem;}
+    .contact-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;border:1px solid var(--warm-sand);background:white;font-size:0.82rem;color:var(--warm-mid);text-decoration:none;transition:all 0.2s;}
+    .contact-pill:hover{border-color:var(--warm-accent);color:var(--warm-accent);}
+    .contact-pill i{font-size:14px;}
+    .divider{width:48px;height:2px;background:var(--warm-accent);margin-bottom:2rem;}
+    .section-label{font-size:0.75rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--warm-accent);margin-bottom:0.5rem;}
+    h2{font-family:'Lora',serif;font-size:1.9rem;font-weight:400;color:var(--warm-dark);margin-bottom:2rem;}
+    #about p{font-size:1rem;color:var(--warm-dark);opacity:0.85;line-height:1.85;margin-bottom:1rem;}
+    .about-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem;}
+    .tag{padding:5px 14px;border-radius:20px;background:var(--warm-light);font-size:0.82rem;color:var(--warm-brown);border:1px solid var(--warm-sand);}
+    .exp-item{display:flex;gap:1.5rem;margin-bottom:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--warm-sand);}
+    .exp-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+    .exp-dot{width:10px;height:10px;border-radius:50%;background:var(--warm-accent);margin-top:8px;flex-shrink:0;}
+    .exp-body{flex:1;}
+    .exp-role{font-family:'Lora',serif;font-size:1.15rem;font-weight:500;color:var(--warm-dark);margin-bottom:2px;}
+    .exp-company{font-size:0.9rem;color:var(--warm-accent);font-weight:500;margin-bottom:4px;}
+    .exp-date{font-size:0.78rem;color:var(--warm-mid);letter-spacing:0.04em;margin-bottom:0.75rem;}
+    .exp-bullets{padding-left:1rem;}
+    .exp-bullets li{font-size:0.92rem;color:var(--warm-dark);opacity:0.8;margin-bottom:4px;line-height:1.7;}
+    .badge-new{display:inline-block;padding:2px 9px;border-radius:10px;background:var(--warm-light);border:1px solid var(--warm-accent);font-size:0.7rem;color:var(--warm-accent);letter-spacing:0.05em;margin-left:8px;vertical-align:middle;}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;}
+    .skill-card{background:white;border:1px solid var(--warm-sand);border-radius:10px;padding:1rem 1.25rem;transition:border-color 0.2s;}
+    .skill-card:hover{border-color:var(--warm-accent);}
+    .skill-icon{font-size:22px;color:var(--warm-accent);margin-bottom:8px;}
+    .skill-name{font-size:0.88rem;font-weight:500;color:var(--warm-dark);}
+    .skill-sub{font-size:0.78rem;color:var(--warm-mid);margin-top:2px;}
+    .edu-item{display:flex;gap:1.25rem;align-items:flex-start;margin-bottom:1.75rem;}
+    .edu-icon{width:40px;height:40px;border-radius:8px;background:var(--warm-light);border:1px solid var(--warm-sand);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--warm-accent);flex-shrink:0;}
+    .edu-title{font-weight:500;font-size:0.95rem;color:var(--warm-dark);}
+    .edu-sub{font-size:0.85rem;color:var(--warm-mid);margin-top:2px;}
+    .edu-date{font-size:0.78rem;color:var(--warm-accent);margin-top:2px;letter-spacing:0.03em;}
+    .edu-desc{font-size:0.85rem;color:var(--warm-dark);opacity:0.75;margin-top:4px;line-height:1.6;}
+    .lang-row{display:flex;align-items:center;gap:1rem;margin-bottom:0.75rem;}
+    .lang-name{font-size:0.9rem;font-weight:500;color:var(--warm-dark);width:80px;}
+    .lang-bar{flex:1;height:4px;background:var(--warm-sand);border-radius:2px;overflow:hidden;}
+    .lang-fill{height:100%;background:var(--warm-accent);border-radius:2px;}
+    .lang-label{font-size:0.78rem;color:var(--warm-mid);width:70px;text-align:right;}
+    .contact-section{background:var(--warm-light);border-radius:16px;padding:3rem 2rem;text-align:center;}
+    .contact-section h2{margin-bottom:0.5rem;}
+    .contact-section p{color:var(--warm-mid);font-size:0.95rem;margin-bottom:2rem;}
+    .contact-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;}
+    .contact-card{display:flex;align-items:center;gap:10px;padding:12px 20px;border-radius:10px;background:white;border:1px solid var(--warm-sand);text-decoration:none;color:var(--warm-dark);font-size:0.88rem;transition:all 0.2s;}
+    .contact-card:hover{border-color:var(--warm-accent);color:var(--warm-accent);}
+    .contact-card i{font-size:18px;color:var(--warm-accent);}
+    .vol-hero{padding:5rem 2rem 1rem;max-width:780px;margin:0 auto;}
+    .vol-hero-inner{background:var(--warm-light);border-radius:16px;padding:3rem;display:flex;gap:2rem;align-items:center;}
+    .vol-icon-big{width:72px;height:72px;border-radius:50%;background:white;border:2px solid var(--warm-accent);display:flex;align-items:center;justify-content:center;font-size:32px;color:var(--warm-accent);flex-shrink:0;}
+    .vol-hero-text h1{font-family:'Lora',serif;font-size:2rem;font-weight:400;color:var(--warm-dark);margin-bottom:0.4rem;}
+    .vol-hero-text p{font-size:0.95rem;color:var(--warm-mid);line-height:1.7;}
+    .vol-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.25rem;margin-top:2rem;}
+    .vol-card{background:white;border:1px solid var(--warm-sand);border-radius:12px;padding:1.5rem;transition:border-color 0.2s;}
+    .vol-card:hover{border-color:var(--warm-accent);}
+    .vol-card-icon{font-size:24px;color:var(--warm-accent);margin-bottom:0.75rem;}
+    .vol-card-title{font-weight:500;font-size:0.95rem;color:var(--warm-dark);margin-bottom:0.4rem;}
+    .vol-card-text{font-size:0.85rem;color:var(--warm-mid);line-height:1.6;}
+    .vol-quote{margin:2.5rem 0;padding:2rem 2.5rem;border-left:3px solid var(--warm-accent);background:var(--warm-light);border-radius:0 12px 12px 0;font-family:'Lora',serif;font-style:italic;font-size:1.05rem;color:var(--warm-dark);opacity:0.85;line-height:1.8;}
+    .uzr-banner{background:white;border:1px solid var(--warm-sand);border-radius:14px;padding:2rem;margin-top:2.5rem;display:flex;gap:1.5rem;align-items:flex-start;}
+    .uzr-badge{background:var(--warm-light);border:1px solid var(--warm-accent);border-radius:10px;padding:0.75rem 1rem;text-align:center;flex-shrink:0;min-width:80px;}
+    .uzr-badge-icon{font-size:26px;color:var(--warm-accent);}
+    .uzr-badge-label{font-size:0.7rem;color:var(--warm-mid);letter-spacing:0.05em;text-transform:uppercase;margin-top:4px;}
+    .uzr-title{font-family:'Lora',serif;font-size:1.2rem;font-weight:500;color:var(--warm-dark);margin-bottom:4px;}
+    .uzr-org{font-size:0.88rem;color:var(--warm-accent);font-weight:500;margin-bottom:6px;}
+    .uzr-desc{font-size:0.88rem;color:var(--warm-dark);opacity:0.8;line-height:1.7;margin-bottom:0.75rem;}
+    .uzr-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
+    .uzr-tag{padding:3px 11px;border-radius:20px;background:var(--warm-light);font-size:0.78rem;color:var(--warm-brown);border:1px solid var(--warm-sand);}
+    footer{text-align:center;padding:2rem;font-size:0.78rem;color:var(--warm-mid);border-top:1px solid var(--warm-sand);margin-top:2rem;}
+    @media(max-width:600px){
+      #hero{flex-direction:column-reverse;gap:1.5rem;}
+      .hero-name{font-size:2.2rem;}
+      .nav-links{gap:0.75rem;}
+      .vol-hero-inner{flex-direction:column;gap:1rem;padding:1.5rem;}
+      .uzr-banner{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name" onclick="showPage('about')">Stefan Kondov</span>
+  <div class="nav-links">
+    <a onclick="showPage('about')" id="about-tab" class="active">About</a>
+    <a onclick="showPage('experience')" id="experience-tab">Experience</a>
+    <a onclick="showPage('skills')" id="skills-tab">Skills</a>
+    <a onclick="showPage('education')" id="education-tab">Education</a>
+    <a onclick="showPage('projects')" id="projects-tab">Projects</a>
+    <a onclick="showPage('vol')" id="vol-tab">Volunteering</a>
+    <a onclick="showPage('contact')" id="contact-tab">Contact</a>
+  </div>
+</nav>
+
+<!-- ABOUT PAGE -->
+<div class="page active" id="page-about">
+  <section id="hero">
+    <div class="hero-text">
+      <p class="hero-eyebrow">Portfolio</p>
+      <h1 class="hero-name">Stefan<br>Kondov</h1>
+      <p class="hero-role">Junior Quality Analyst · Sofia, Bulgaria</p>
+      <p class="hero-bio">Motivated and adaptable professional with hands-on experience in quality assurance, customer care, and team collaboration. Passionate about people, problem-solving, and continuous growth.</p>
+      <div class="hero-contacts">
+        <a class="contact-pill" href="mailto:kondovstefan1@gmail.com"><i class="ti ti-mail"></i>kondovstefan1@gmail.com</a>
+        <a class="contact-pill" href="https://www.linkedin.com/in/stefankondov/" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
+        <a class="contact-pill" href="tel:+359892746638"><i class="ti ti-phone"></i>+359 89 274 6638</a>
+      </div>
+    </div>
+    <img src="stefan_profile.jpg" alt="Stefan Kondov" style="width:140px; height:140px; border-radius:50%; border:3px solid var(--warm-accent); object-fit:cover; margin-top:0.5rem;">
+  </section>
+
+  <section id="about" style="padding-top: 0;">
+    <p class="section-label">About me</p>
+    <div class="divider"></div>
+    <p>I'm a young professional from Sofia, Bulgaria, with a genuine passion for quality, communication, and helping people. My journey has taken me from supporting teams in engineering and maintenance software to working as a Junior Quality Analyst at Telus Digital.</p>
+    <p>Outside of work, I volunteer with the Give Time Foundation — visiting orphanages monthly and leading teams in the "School for Work" (UZR) programme, helping young people without parental care take their first real steps into the working world.</p>
+    <p>I'm eager to grow into a Quality Coach role where I can combine my technical QA skills with my love for guiding others.</p>
+    <div class="about-tags">
+      <span class="tag">Quality Assurance</span>
+      <span class="tag">Customer Care</span>
+      <span class="tag">Team Leadership</span>
+      <span class="tag">Problem Solving</span>
+      <span class="tag">Communication</span>
+      <span class="tag">Mentoring</span>
+    </div>
+  </section>
+  <footer>Stefan Kondov · Portfolio · 2026</footer>
+</div>
+
+<!-- EXPERIENCE PAGE -->
+<div class="page" id="page-experience">
+  <section id="experience" style="padding-top: 5rem;">
+    <p class="section-label">Work experience</p>
+    <div class="divider"></div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-body">
+        <div class="exp-role">Junior Quality Analyst <span class="badge-new">Current</span></div>
+        <div class="exp-company">Telus Digital</div>
+        <div class="exp-date">2025 — Present · Sofia, Bulgaria</div>
+        <ul class="exp-bullets">
+          <li>Performing quality evaluations and providing structured feedback to support agents</li>
+          <li>Identifying patterns and trends in quality data to help improve team performance</li>
+          <li>Collaborating with team leads to uphold service standards and consistency</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-body">
+        <div class="exp-role">Customer Care Representative</div>
+        <div class="exp-company">Telus Digital</div>
+        <div class="exp-date">December 2024 — 2025 · Sofia, Bulgaria</div>
+        <ul class="exp-bullets">
+          <li>Provided support and solutions to client inquiries across various channels</li>
+          <li>Maintained empathy and patience while resolving customer concerns</li>
+          <li>Developed strong communication and conflict-resolution skills</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-body">
+        <div class="exp-role">Summer Intern — QA</div>
+        <div class="exp-company">Fabrico — The Smart Maintenance Solution</div>
+        <div class="exp-date">June 2024 — October 2024 · Sofia, Bulgaria</div>
+        <ul class="exp-bullets">
+          <li>Monitored and tested software that manages machine maintenance inside production factories</li>
+          <li>Collaborated with cross-functional teams, improving organisational and communication skills</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-dot"></div>
+      <div class="exp-body">
+        <div class="exp-role">Summer Intern — QA</div>
+        <div class="exp-company">IFD Engineering Joint Venture</div>
+        <div class="exp-date">July 2023 — September 2023 · Sofia, Bulgaria</div>
+        <ul class="exp-bullets">
+          <li>Tested software managing available product quantities inside warehouses, ensuring quality and smoothness</li>
+          <li>Supported daily operational tasks, contributing to smooth team coordination</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <footer>Stefan Kondov · Portfolio · 2026</footer>
+</div>
+
+<!-- SKILLS PAGE -->
+<div class="page" id="page-skills">
+  <section id="skills" style="padding-top: 5rem;">
+    <p class="section-label">Skills & tools</p>
+    <div class="divider"></div>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon"><i class="ti ti-checklist"></i></div><div class="skill-name">Manual QA</div><div class="skill-sub">Testing & quality assurance</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="ti ti-headset"></i></div><div class="skill-name">Customer Care</div><div class="skill-sub">Support & resolution</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="ti ti-brand-google"></i></div><div class="skill-name">Google Workspace</div><div class="skill-sub">Docs, Sheets, Drive</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="ti ti-file-spreadsheet"></i></div><div class="skill-name">Microsoft Office</div><div class="skill-sub">Word, Excel, Outlook</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="ti ti-brand-trello"></i></div><div class="skill-name">Trello</div><div class="skill-sub">Task management</div></div>
+      <div class="skill-card"><div class="skill-icon"><i class="ti ti-brand-slack"></i></div><div class="skill-name">Slack</div><div class="skill-sub">Team communication</div></div>
+    </div>
+    <div style="margin-top:2.5rem;">
+      <p style="font-size:0.82rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--warm-accent);margin-bottom:1rem;">Languages</p>
+      <div class="lang-row"><span class="lang-name">Bulgarian</span><div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div><span class="lang-label">Native</span></div>
+      <div class="lang-row"><span class="lang-name">English</span><div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div><span class="lang-label">Proficient</span></div>
+    </div>
+  </section>
+  <footer>Stefan Kondov · Portfolio · 2026</footer>
+</div>
+
+<!-- EDUCATION PAGE -->
+<div class="page" id="page-education">
+  <section id="education" style="padding-top: 5rem;">
+    <p class="section-label">Education & courses</p>
+    <div class="divider"></div>
+    <div class="edu-item">
+      <div class="edu-icon"><i class="ti ti-school"></i></div>
+      <div><div class="edu-title">High School — "National Leaders"</div><div class="edu-sub">Bratsigovo, Bulgaria</div><div class="edu-date">2018 – 2024</div></div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-icon"><i class="ti ti-certificate"></i></div>
+      <div><div class="edu-title">Manual Quality Assurance Basics</div><div class="edu-sub">Professional course</div><div class="edu-date">Completed 2024</div><div class="edu-desc">Covered foundational QA concepts, manual testing techniques, bug reporting, and software quality principles.</div></div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-icon"><i class="ti ti-table"></i></div>
+      <div>
+        <div class="edu-title">Google Sheets — Beginner Certificate</div>
+        <div class="edu-sub">Google / Online certification</div>
+        <div class="edu-date">Completed 2024</div>
+        <div class="edu-desc">Fundamentals of Google Sheets including formulas, data organisation, and spreadsheet management.</div>
+        <a href="https://drive.google.com/file/d/1QrliwuY4Bkdm9zyS6Tdw4QDeZq03UcOs/view?usp=drive_link" target="_blank" style="display:inline-flex; align-items:center; gap:4px; margin-top:8px; font-size:0.82rem; color:var(--warm-accent); text-decoration:none; font-weight:500;">
+          <i class="ti ti-file-text"></i> View PDF Certificate
+        </a>
+      </div>
+    </div>
+  </section>
+  <footer>Stefan Kondov · Portfolio · 2026</footer>
+</div>
+
+<!-- PROJECTS PAGE -->
+<div class="page" id="page-projects">
+  <section id="projects" style="padding-top: 5rem;">
+    <p class="section-label">Featured Projects</p>
+    <div class="divider"></div>
+    <div class="uzr-banner">
+      <div class="uzr-badge">
+        <div class="uzr-badge-icon"><i class="ti ti-mail-fast"></i></div>
+        <div class="uzr-badge-label">Apps Script</div>
+      </div>
+      <div>
+        <div class="uzr-title">Automated Notification System</div>
+        <div class="uzr-org">Google Sheets Automation</div>
+        <div class="uzr-desc">
+          Developed and managed a custom Google Sheets project to streamline communication across multiple international teams. By writing a custom Google Apps Script, the system automatically triggers and routes targeted email alerts to specific recipients across various language teams based on live spreadsheet data, significantly reducing manual tracking time and improving response rates.
+        </div>
+        <div class="uzr-tags">
+          <span class="uzr-tag">Google Apps Script</span>
+          <span class="uzr-tag">Process Automation</span>
+          <span class="uzr-tag">Data Management</span>
+          <span class="uzr-tag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>Stefan Kondov · Portfolio · 2026</footer>
+</div>
+
+<!-- VOLUNTEERING PAGE -->
+<div class="page" id="page-vol">
+  <div class="vol-hero">
+    <div class="vol-hero-inner">
+      <div class="vol-icon-big"><i class="ti ti-heart"></i></div>
+      <div class="vol-hero-text">
+        <h1>Volunteering</h1>
+        <p>Giving back is a core part of who I am. Since 2023 I've been volunteering with the Give Time Foundation — visiting orphanages monthly and stepping up as a team lead in their flagship "School for Work" career programme.</p>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top:1.5rem;">
+    <p class="section-label">Monthly visits</p>
+    <div class="divider"></div>
+    <div class="exp-item">
+      <div class="exp-dot" style="background:var(--warm-mid);"></div>
+      <div class="exp-body">
+        <div class="exp-role">Volunteer</div>
+        <div class="exp-company">Give Time Foundation</div>
+        <div class="exp-date">2023 — Present · Sofia, Bulgaria</div>
+        <ul class="exp-bullets">
+          <li>Monthly visits to orphanages across Bulgaria to communicate and mentor children deprived of parental care</li>
+          <li>Building trust and meaningful connections with children in a structured, caring environment</li>
+          <li>Strengthened empathy, patience, and ability to connect with people of all ages</li>
+        </ul>
+      </div>
+    </div>
+    <div class="vol-quote">
+      "Spending time with these children has taught me more about empathy, patience, and what really matters than anything else in my life. It's the part of my week I look forward to most."
+    </div>
+    <div class="vol-cards">
+      <div class="vol-card">
+        <div class="vol-card-icon"><i class="ti ti-users"></i></div>
+        <div class="vol-card-title">Mentorship</div>
+        <div class="vol-card-text">Guiding and supporting children through conversation, play, and shared activities to help them feel seen and valued.</div>
+      </div>
+      <div class="vol-card">
+        <div class="vol-card-icon"><i class="ti ti-mood-smile"></i></div>
+        <div class="vol-card-title">Emotional support</div>
+        <div class="vol-card-text">Creating a safe, warm presence for children who may lack consistent adult relationships in their lives.</div>
+      </div>
+      <div class="vol-card">
+        <div class="vol-card-icon"><i class="ti ti-calendar-event"></i></div>
+        <div class="vol-card-title">Monthly commitment</div>
+        <div class="vol-card-text">Showing up consistently every month — because reliability and presence make the real difference.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:1rem;">
+    <p class="section-label">School for Work — UZR 2026</p>
+    <div class="divider"></div>
+    <div class="uzr-banner">
+      <div class="uzr-badge">
+        <div class="uzr-badge-icon"><i class="ti ti-award"></i></div>
+        <div class="uzr-badge-label">Team lead</div>
+      </div>
+      <div>
+        <div class="uzr-title">Team Lead — "Училище за работа" (School for Work)</div>
+        <div class="uzr-org">Give Time Foundation · 2026</div>
+        <div class="uzr-desc">
+          UZR is a 6-day intensive career programme bringing together 40 young people without parental care from across Bulgaria. They travel to Sofia and are split into eight professional teams — restaurants, bakeries, hospitality, construction, photography, beauty studios, IT, and advertising agencies — working shoulder to shoulder with professionals and volunteer mentors.<br><br>
+          This year Stefan stepped up as a team lead for one of the eight squads, guiding young participants through real workplace experiences, helping them build confidence, work habits, and communication skills — and supporting them through every step from writing their first CV to presenting at the final showcase fair.
+        </div>
+        <div class="uzr-tags">
+          <span class="uzr-tag">Team leadership</span>
+          <span class="uzr-tag">Career mentoring</span>
+          <span class="uzr-tag">Youth development</span>
+          <span class="uzr-tag">Coaching</span>
+          <span class="uzr-tag">6-day programme</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Stefan Kondov · Portfolio · 2026</footer>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <section id="contact" style="padding-top: 5rem;">
+    <div class="contact-section">
+      <p class="section-label" style="text-align:center;">Get in touch</p>
+      <h2 style="margin-bottom:0.5rem;">Let's connect</h2>
+      <p>Whether you have a role in mind or just want to say hello — I'd love to hear from you.</p>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:kondovstefan1@gmail.com"><i class="ti ti-mail"></i>kondovstefan1@gmail.com</a>
+        <a class="contact-card" href="https://www.linkedin.com/in/stefankondov/" target="_blank"><i class="ti ti-brand-linkedin"></i>linkedin.com/in/stefankondov</a>
+        <a class="contact-card" href="tel:+359892746638"><i class="ti ti-phone"></i>+359 89 274 6638</a>
+        <a class="contact-card"><i class="ti ti-map-pin"></i>Sofia, Bulgaria</a>
+      </div>
+    </div>
+  </section>
+  <footer>Stefan Kondov · Portfolio · 2026</footer>
+</div>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.id === name + '-tab');
+    });
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
+</html>
